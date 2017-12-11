@@ -7,7 +7,6 @@
 const getElementsByClassName = className => {
   // create a result var that will hold the array of all classNames
   let result = [];
-
   // declare a new function that will do the recursion
   let recursiveFunction = node => {
     // check if className exist in the node classList
@@ -16,17 +15,13 @@ const getElementsByClassName = className => {
      // if yes push it to results
       result.push(node); // parents
     }
-
+// debugger
     let nodeChildren = node.children;
-
-    for(let i = 0; i < nodeChildren.length; i++){
-      recursiveFunction(nodeChildren[i]);
-    };
-
+    _.each(nodeChildren, function(x){
+      recursiveFunction(x)
+    })
   };
-
   recursiveFunction(document.body);
-
   return result;
 };
 

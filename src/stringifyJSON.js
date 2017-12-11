@@ -5,7 +5,6 @@
 
 var stringifyJSON = function(obj) {
   // string
-
   if(typeof obj === 'string'){
     console.log(obj)
     return '"' + String(obj) + '"';
@@ -35,10 +34,29 @@ var stringifyJSON = function(obj) {
   if(Array.isArray(obj)){
     let result = '';
     for(let i = 0; i < obj.length; i++){
-       result += stringifyJSON(obj[i]);
-    }
+      if( i !== obj.length -1 ){
+        result += stringifyJSON(obj[i]) + ',';
+      } else {
+        result += stringifyJSON(obj[i]);
+      };
+    };
     return ('[' + result + ']');
-  }
+  };
 
   // object
+  var result = [];
+  var keys = Object.keys(obj);
+  // check if obj key value is not a function or undefined
+  for(var i in obj){
+    if( typeof obj[i] !== 'function' && obj[i] !== undefined ){
+      result.push(stringifyJSON(i) + ':' + stringifyJSON(obj[i]));
+    }
+  };
+  return ('{' + result.join(',') + '}');
+
 };
+
+
+
+
+
