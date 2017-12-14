@@ -10,16 +10,15 @@ const getElementsByClassName = className => {
   // declare a new function that will do the recursion
   let recursiveFunction = node => {
     // check if className exist in the node classList
-    if(node.classList.contains(className)){
+    if ( node.classList.contains( className ) ) {
       // console.log(node.classList.contains(className))
-     // if yes push it to results
+      // if yes push it to results
       result.push(node); // parents
     }
-// debugger
     let nodeChildren = node.children;
-    _.each(nodeChildren, function(x){
-      recursiveFunction(x)
-    })
+    _.each( nodeChildren, function(x) {
+      recursiveFunction(x);
+    });
   };
   recursiveFunction(document.body);
   return result;
